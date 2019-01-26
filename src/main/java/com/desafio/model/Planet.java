@@ -1,12 +1,10 @@
 package com.desafio.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Repository
-@Table(name = "Planet")
 public class Planet {
     @Id
     private int id;

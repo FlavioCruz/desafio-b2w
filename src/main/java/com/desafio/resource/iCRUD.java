@@ -1,4 +1,4 @@
-package com.desafio.controller;
+package com.desafio.resource;
 
 
 import java.util.List;
