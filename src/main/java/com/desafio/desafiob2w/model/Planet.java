@@ -10,12 +10,13 @@ public class Planet {
     @Id
     private int id;
     private String name;
-    private String climate;
-    private String terrain;
+    private List<String> climate;
+    private List<String> terrain;
     private Integer movieAppearances;
     private List<String> movies;
 
     public Planet() {
+        movieAppearances = 0;
     }
 
     public int getId() {
@@ -34,19 +35,19 @@ public class Planet {
         this.name = name;
     }
 
-    public String getClimate() {
+    public List<String> getClimate() {
         return climate;
     }
 
-    public void setClimate(String climate) {
+    public void setClimate(List<String> climate) {
         this.climate = climate;
     }
 
-    public String getTerrain() {
+    public List<String> getTerrain() {
         return terrain;
     }
 
-    public void setTerrain(String terrain) {
+    public void setTerrain(List<String> terrain) {
         this.terrain = terrain;
     }
 
@@ -64,5 +65,6 @@ public class Planet {
 
     public void setMovies(List<String> movies) {
         this.movies = movies;
+        this.movieAppearances = this.movies != null ? this.movies.size() : 0;
     }
 }

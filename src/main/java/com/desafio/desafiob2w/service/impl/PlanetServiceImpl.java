@@ -3,6 +3,7 @@ package com.desafio.desafiob2w.service.impl;
 import com.desafio.desafiob2w.model.Planet;
 import com.desafio.desafiob2w.repository.IPlanetDataAccess;
 import com.desafio.desafiob2w.service.PlanetService;
+import com.desafio.desafiob2w.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -17,9 +18,13 @@ public class PlanetServiceImpl extends SpringBeanAutowiringSupport implements Pl
     private IPlanetDataAccess planetDataAccess;
 
     @Override
-    public Planet getById(Integer id) {
+    public Planet getById(Integer id) throws NotFoundException {
         Optional<Planet> planet = planetDataAccess.findById(id);
-        return planet.isPresent() ? planet.get() : null;
+        if(planet.isPresent()){
+            return planet.get();
+        }else{
+            throw new NotFoundException("An error occurred while retrieving the information.");
+        }
     }
 
     @Override
@@ -39,8 +44,12 @@ public class PlanetServiceImpl extends SpringBeanAutowiringSupport implements Pl
     @Override
     public void create(Planet entity) {
         List<Planet> planets = getAll();
-        Integer lastIndex = planets.size() - 1;
-        entity.setId(planets.get(lastIndex).getId() + 1);
+        if(planets.size() == 0){
+            entity.setId(1);
+        }else{
+            Integer lastIndex = planets.size() - 1;
+            entity.setId(planets.get(lastIndex).getId() + 1);
+        }
         planetDataAccess.save(entity);
     }
 

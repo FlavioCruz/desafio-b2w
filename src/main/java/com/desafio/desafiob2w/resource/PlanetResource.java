@@ -4,10 +4,13 @@ import com.desafio.desafiob2w.model.Planet;
 import com.desafio.desafiob2w.resource.response.Response;
 import com.desafio.desafiob2w.resource.response.Status;
 import com.desafio.desafiob2w.service.PlanetService;
+import com.desafio.desafiob2w.service.SWApi;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -16,13 +19,16 @@ import java.util.List;
 public class PlanetResource {
     @Autowired
     private PlanetService planetService;
+    @Autowired
+    private SWApi api;
 
     /**
      * Returns all planets
      * @return {@link List<Planet>}
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Response getAll() {
+    public Response getAll() throws IOException, ParseException {
+//        api.generateInitialInfo();
         List<Planet> planets = planetService.getAll();
         return new Response(planets, Status.SUCCESS, "Success");
     }
@@ -34,7 +40,8 @@ public class PlanetResource {
      */
     @GetMapping(value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Response getById(@PathVariable(value = "id") Integer id) {
-        Planet planet = planetService.getById(id);
+//        Planet planet = planetService.getById(id);
+        Planet planet = api.getById(id);
         return new Response(planet, Status.SUCCESS, "Success");
     }
 
@@ -57,6 +64,14 @@ public class PlanetResource {
     public Response create(@RequestBody Planet entity) {
         planetService.create(entity);
         return new Response(entity.getId(), Status.SUCCESS, "Success");
+    }
+
+    @PostMapping(value = "/mult", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Response create(@RequestBody List<Planet> entities) {
+        for(Planet p : entities){
+            planetService.create(p);
+        }
+        return new Response(null, Status.SUCCESS, "Success");
     }
 
     @DeleteMapping(value = "/{id}")
