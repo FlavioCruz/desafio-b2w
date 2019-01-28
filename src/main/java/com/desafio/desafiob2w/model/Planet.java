@@ -3,6 +3,8 @@ package com.desafio.desafiob2w.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "planets")
 public class Planet {
     @Id
@@ -11,6 +13,7 @@ public class Planet {
     private String climate;
     private String terrain;
     private Integer movieAppearances;
+    private List<String> movies;
 
     public Planet() {
     }
@@ -53,5 +56,13 @@ public class Planet {
 
     public void setMovieAppearances(Integer movieAppearances) {
         this.movieAppearances = movieAppearances;
+    }
+
+    public List<String> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<String> movies) {
+        this.movies = movies;
     }
 }

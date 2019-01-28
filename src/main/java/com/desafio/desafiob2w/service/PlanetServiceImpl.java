@@ -31,8 +31,15 @@ public class PlanetServiceImpl extends SpringBeanAutowiringSupport implements Pl
         return planetDataAccess.findAll();
     }
 
+    /**
+     * Creates a new planet dealing with incremental ID (as Mongo doesn't create sequential ID)
+     * @param entity {@link Planet}
+     */
     @Override
     public void create(Planet entity) {
+        List<Planet> planets = getAll();
+        Integer lastIndex = planets.size() - 1;
+        entity.setId(planets.get(lastIndex).getId() + 1);
         planetDataAccess.save(entity);
     }
 
