@@ -1,11 +1,8 @@
-package com.desafio.dataaccess;
+package com.desafio.desafiob2w.repository;
 
-import com.desafio.model.Planet;
+import com.desafio.desafiob2w.model.Planet;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface IPlanetDataAccess extends MongoRepository<Planet, Integer> {
-    Planet getById(Integer id);
     Planet getByName(String name);
-    void create(Planet entity);
-    void delete(Planet entity);
 }

@@ -1,10 +1,9 @@
-package com.desafio.model;
+package com.desafio.desafiob2w.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-
-@Repository
+@Document(collection = "planets")
 public class Planet {
     @Id
     private int id;
@@ -12,6 +11,9 @@ public class Planet {
     private String climate;
     private String terrain;
     private Integer movieAppearances;
+
+    public Planet() {
+    }
 
     public int getId() {
         return id;
