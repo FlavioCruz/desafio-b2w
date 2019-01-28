@@ -1,7 +1,8 @@
-package com.desafio.desafiob2w.service;
+package com.desafio.desafiob2w.service.impl;
 
 import com.desafio.desafiob2w.model.Planet;
 import com.desafio.desafiob2w.repository.IPlanetDataAccess;
+import com.desafio.desafiob2w.service.PlanetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
