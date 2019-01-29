@@ -5,12 +5,11 @@ import com.desafio.desafiob2w.resource.response.Response;
 import com.desafio.desafiob2w.resource.response.Status;
 import com.desafio.desafiob2w.service.PlanetService;
 import com.desafio.desafiob2w.service.SWApi;
-import org.json.simple.parser.ParseException;
+import com.desafio.desafiob2w.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -27,10 +26,10 @@ public class PlanetResource {
      * @return {@link List<Planet>}
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Response getAll() throws IOException, ParseException {
+    public Response getAll() {
 //        api.generateInitialInfo();
         List<Planet> planets = planetService.getAll();
-        return new Response(planets, Status.SUCCESS, "Success");
+        return new Response(planets, Status.SUCCESS.toString(), Status.SUCCESS);
     }
 
     /**
@@ -40,9 +39,12 @@ public class PlanetResource {
      */
     @GetMapping(value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Response getById(@PathVariable(value = "id") Integer id) {
-//        Planet planet = planetService.getById(id);
-        Planet planet = api.getById(id);
-        return new Response(planet, Status.SUCCESS, "Success");
+        try{
+            Planet planet = planetService.getById(id);
+            return new Response(planet, Status.SUCCESS.toString(), Status.SUCCESS);
+        }catch(ResourceNotFoundException e){
+            return new Response(e.getMessage(), Status.NOT_FOUND.toString(), Status.NOT_FOUND);
+        }
     }
 
     /**
@@ -52,8 +54,12 @@ public class PlanetResource {
      */
     @GetMapping(value = "/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Response getByName(@PathVariable(value = "name") String name) {
-        Planet planet = planetService.getByName(name);
-        return new Response(planet, Status.SUCCESS, "Success");
+        try{
+            Planet planet = planetService.getByName(name);
+            return new Response(planet, Status.SUCCESS.toString(), Status.SUCCESS);
+        }catch(ResourceNotFoundException e){
+            return new Response(e.getMessage(), Status.NOT_FOUND.toString(), Status.NOT_FOUND);
+        }
     }
 
     /**
@@ -63,7 +69,7 @@ public class PlanetResource {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Response create(@RequestBody Planet entity) {
         planetService.create(entity);
-        return new Response(entity.getId(), Status.SUCCESS, "Success");
+        return new Response(entity.getId(), Status.SUCCESS.toString(), Status.SUCCESS);
     }
 
     @PostMapping(value = "/mult", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -71,7 +77,7 @@ public class PlanetResource {
         for(Planet p : entities){
             planetService.create(p);
         }
-        return new Response(null, Status.SUCCESS, "Success");
+        return new Response(null, Status.SUCCESS.toString(), Status.SUCCESS);
     }
 
     @DeleteMapping(value = "/{id}")
