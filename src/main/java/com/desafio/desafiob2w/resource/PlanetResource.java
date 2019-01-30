@@ -47,6 +47,8 @@ public class PlanetResource {
             return new Response(planet, Status.SUCCESS, Status.SUCCESS.toString());
         }catch(ResourceNotFoundException e){
             return new Response(e.getMessage(), Status.NOT_FOUND, Status.NOT_FOUND.toString());
+        } catch(Exception e){
+            return new Response("An error occurred while performing the operation", Status.INTERNAL_ERROR, Status.INTERNAL_ERROR.toString());
         }
     }
 
@@ -62,6 +64,8 @@ public class PlanetResource {
             return new Response(planet, Status.SUCCESS, Status.SUCCESS.toString());
         }catch(ResourceNotFoundException e){
             return new Response(e.getMessage(), Status.NOT_FOUND, Status.NOT_FOUND.toString());
+        } catch(Exception e){
+            return new Response("An error occurred while performing the operation", Status.INTERNAL_ERROR, Status.INTERNAL_ERROR.toString());
         }
     }
 
@@ -92,7 +96,7 @@ public class PlanetResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    public Response delete(@PathVariable(value = "id") Integer id) {
+    public Response delete(@PathVariable(value = "id") Integer id) {    
         try{
             planetService.delete(id);
             return new Response("Planet deleted successfully", Status.SUCCESS, Status.SUCCESS.toString());
