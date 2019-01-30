@@ -96,7 +96,7 @@ public class PlanetResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    public Response delete(@PathVariable(value = "id") Integer id) {    
+    public Response delete(@PathVariable(value = "id") Integer id) {
         try{
             planetService.delete(id);
             return new Response("Planet deleted successfully", Status.SUCCESS, Status.SUCCESS.toString());
