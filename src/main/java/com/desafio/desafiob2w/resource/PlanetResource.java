@@ -27,9 +27,12 @@ public class PlanetResource {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Response getAll() {
-//        api.generateInitialInfo();
-        List<Planet> planets = planetService.getAll();
-        return new Response(planets, Status.SUCCESS.toString(), Status.SUCCESS);
+        try{
+            List<Planet> planets = planetService.getAll();
+            return new Response(planets, Status.SUCCESS, Status.SUCCESS.toString());
+        } catch(Exception e){
+            return new Response("An error occurred while performing the operation", Status.INTERNAL_ERROR, Status.INTERNAL_ERROR.toString());
+        }
     }
 
     /**
@@ -41,9 +44,9 @@ public class PlanetResource {
     public Response getById(@PathVariable(value = "id") Integer id) {
         try{
             Planet planet = planetService.getById(id);
-            return new Response(planet, Status.SUCCESS.toString(), Status.SUCCESS);
+            return new Response(planet, Status.SUCCESS, Status.SUCCESS.toString());
         }catch(ResourceNotFoundException e){
-            return new Response(e.getMessage(), Status.NOT_FOUND.toString(), Status.NOT_FOUND);
+            return new Response(e.getMessage(), Status.NOT_FOUND, Status.NOT_FOUND.toString());
         }
     }
 
@@ -56,9 +59,9 @@ public class PlanetResource {
     public Response getByName(@PathVariable(value = "name") String name) {
         try{
             Planet planet = planetService.getByName(name);
-            return new Response(planet, Status.SUCCESS.toString(), Status.SUCCESS);
+            return new Response(planet, Status.SUCCESS, Status.SUCCESS.toString());
         }catch(ResourceNotFoundException e){
-            return new Response(e.getMessage(), Status.NOT_FOUND.toString(), Status.NOT_FOUND);
+            return new Response(e.getMessage(), Status.NOT_FOUND, Status.NOT_FOUND.toString());
         }
     }
 
@@ -68,20 +71,33 @@ public class PlanetResource {
      */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Response create(@RequestBody Planet entity) {
-        planetService.create(entity);
-        return new Response(entity.getId(), Status.SUCCESS.toString(), Status.SUCCESS);
+        try{
+            planetService.create(entity);
+            return new Response("New planet created with ID: " + entity.getId(), Status.SUCCESS, Status.SUCCESS.toString());
+        } catch(Exception e){
+            return new Response("An error occurred while performing the operation", Status.INTERNAL_ERROR, Status.INTERNAL_ERROR.toString());
+        }
     }
 
     @PostMapping(value = "/mult", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Response create(@RequestBody List<Planet> entities) {
-        for(Planet p : entities){
-            planetService.create(p);
+        try{
+            for(Planet p : entities){
+                planetService.create(p);
+            }
+            return new Response("New planets created successfully", Status.SUCCESS, Status.SUCCESS.toString());
+        } catch(Exception e){
+            return new Response("An error occurred while performing the operation", Status.INTERNAL_ERROR, Status.INTERNAL_ERROR.toString());
         }
-        return new Response(null, Status.SUCCESS.toString(), Status.SUCCESS);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable(value = "id") Integer id) {
-        planetService.delete(id);
+    public Response delete(@PathVariable(value = "id") Integer id) {
+        try{
+            planetService.delete(id);
+            return new Response("Planet deleted successfully", Status.SUCCESS, Status.SUCCESS.toString());
+        } catch(Exception e){
+            return new Response("An error occurred while performing the operation", Status.INTERNAL_ERROR, Status.INTERNAL_ERROR.toString());
+        }
     }
 }

@@ -2,8 +2,8 @@ package com.desafio.desafiob2w.resource.response;
 
 public class Response {
     private Object response;
-    private String status;
-    private Status message;
+    private Status status;
+    private String message;
 
     public Object getResponse() {
         return response;
@@ -13,23 +13,23 @@ public class Response {
         this.response = response;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Status getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Status message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public Response(Object response, String status, Status message) {
+    public Response(Object response, Status status, String message) {
         this.response = response;
         this.status = status;
         this.message = message;

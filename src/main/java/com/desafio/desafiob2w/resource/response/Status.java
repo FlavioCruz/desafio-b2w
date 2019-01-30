@@ -1,16 +1,16 @@
 package com.desafio.desafiob2w.resource.response;
 
 public enum  Status {
-    SUCCESS(200),
-    INTERNAL_ERROR(500),
-    NOT_FOUND(404);
+    SUCCESS("Sucess"),
+    INTERNAL_ERROR("An error occurred"),
+    NOT_FOUND("The requested resource was not found");
 
-    private final Integer statusCode;
-    Status(Integer statusCode){
+    private final String statusCode;
+    Status(String statusCode){
         this.statusCode = statusCode;
     }
 
-    public Integer getStatusCode() {
+    public String getStatusCode() {
         return statusCode;
     }
 
