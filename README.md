@@ -60,6 +60,30 @@ As respostas de todas as requisições seguem um padrão onde:
     "message": "Mensagem de status"
 }
 ~~~~
-
+Exemplo /id/9 :
+~~~~javascript
+{
+    "response": {
+        "id": 9,
+        "name": "Coruscant",
+        "climate": [
+            "temperate"
+        ],
+        "terrain": [
+            "cityscape",
+            "mountains"
+        ],
+        "movieAppearances": 4,
+        "movies": [
+            "https://swapi.co/api/films/5/",
+            "https://swapi.co/api/films/4/",
+            "https://swapi.co/api/films/6/",
+            "https://swapi.co/api/films/3/"
+        ]
+    },
+    "status": "SUCCESS",
+    "message": "Sucess"
+}
+~~~~
 ## Desenvolvedor
 Flávio Cruz
