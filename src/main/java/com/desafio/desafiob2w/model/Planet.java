@@ -1,5 +1,6 @@
 package com.desafio.desafiob2w.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,11 +10,15 @@ import java.util.List;
 public class Planet {
     @Id
     private int id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("climate")
     private List<String> climate;
+    @JsonProperty("terrain")
     private List<String> terrain;
-    private Integer movieAppearances;
+    @JsonProperty("films")
     private List<String> movies;
+    private Integer movieAppearances;
 
     public Planet() {
         movieAppearances = 0;

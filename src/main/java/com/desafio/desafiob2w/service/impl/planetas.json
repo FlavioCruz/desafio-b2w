@@ -1,0 +1,105 @@
+[
+  {
+    "id": "1",
+    "name": "Tatooine",
+    "climate": ["arid"],
+    "terrain": ["desert"],
+    "movies": [
+      "https://swapi.co/api/films/5/",
+      "https://swapi.co/api/films/4/",
+      "https://swapi.co/api/films/6/",
+      "https://swapi.co/api/films/3/",
+      "https://swapi.co/api/films/1/"
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Alderaan",
+    "climate": ["temperate"],
+    "terrain": ["grasslands", "mountains"],
+    "movies": [
+      "https://swapi.co/api/films/6/",
+      "https://swapi.co/api/films/1/"
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Yavin IV",
+    "climate": ["temperate", "tropical"],
+    "terrain": ["jungle", "rainforests"],
+    "movies": [
+      "https://swapi.co/api/films/1/"
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Hoth",
+    "climate": ["frozen"],
+    "terrain": ["tundra", "ice caves", "mountain ranges"],
+    "movies": [
+      "https://swapi.co/api/films/2/"
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Dagobah",
+    "climate": ["murky"],
+    "terrain": ["swamp", "jungles"],
+    "movies": [
+      "https://swapi.co/api/films/2/",
+      "https://swapi.co/api/films/6/",
+      "https://swapi.co/api/films/3/"
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Bespin",
+    "climate": ["temperate"],
+    "terrain": ["gas giant"],
+    "movies": [
+      "https://swapi.co/api/films/2/"
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Endor",
+    "climate": ["temperate"],
+    "terrain": ["forests", "mountains", "lakes"],
+    "movies": [
+      "https://swapi.co/api/films/3/"
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Naboo",
+    "climate": ["temperate"],
+    "terrain": ["grassy hills", "swamps", "forests", "mountains"],
+    "movies": [
+      "https://swapi.co/api/films/5/",
+      "https://swapi.co/api/films/4/",
+      "https://swapi.co/api/films/6/",
+      "https://swapi.co/api/films/3/"
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Coruscant",
+    "climate": ["temperate"],
+    "terrain": ["cityscape", "mountains"],
+    "movies": [
+      "https://swapi.co/api/films/5/",
+      "https://swapi.co/api/films/4/",
+      "https://swapi.co/api/films/6/",
+      "https://swapi.co/api/films/3/"
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Kamino",
+    "climate": ["temperate"],
+    "terrain": ["ocean"],
+    "movies": [
+      "https://swapi.co/api/films/5/"
+    ]
+  }
+]

@@ -1,0 +1,2 @@
+[MASTER] 21:29:56.062 [pool-2-thread-1] WARN  TestSuiteSerialization - Cannot load tests because file does not exist: C:\Users\Flavio\Documents\Desafios\B2W\desafio-b2w\.evosuite\evosuite-seeds\com.desafio.desafiob2w.resource.response.Status.seed
+[MASTER] 21:29:56.319 [pool-2-thread-1] WARN  TimeController - Phase INITIALIZATION lasted too long, 6 seconds more than allowed.
